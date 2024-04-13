@@ -6,7 +6,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.jetpackdemo.ui.comonents.AppToolbar
+import com.example.jetpackdemo.ui.comonents.toolbars.AppToolbar
 
 /**
  * Composable function that represents the home screen of the application.

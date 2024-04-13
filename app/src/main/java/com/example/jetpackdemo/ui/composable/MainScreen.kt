@@ -22,6 +22,11 @@ fun MainScreen() {
     Scaffold(
         containerColor = Color.White,
         bottomBar = {
-            BottomAppBar { BottomNavigationBar(navController = navController) }
-        }) { NavigationScreens(navController = navController) }
+            BottomAppBar {
+                BottomNavigationBar(navController = navController)
+            }
+        }
+    ) {
+        NavigationScreens(navController = navController)
+    }
 }

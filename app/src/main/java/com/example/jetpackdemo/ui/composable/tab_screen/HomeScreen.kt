@@ -64,15 +64,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.jetpackdemo.R
 import com.example.jetpackdemo.data.getAuthorList
 import com.example.jetpackdemo.data.getPosts
 import com.example.jetpackdemo.data.getTopicItems
-import com.example.jetpackdemo.ui.comonents.AppToolbar
-import com.example.jetpackdemo.ui.navigation.NavItem
+import com.example.jetpackdemo.ui.comonents.toolbars.AppToolbar
 import com.example.jetpackdemo.ui.navigation.NavRoute
 import com.example.jetpackdemo.ui.theme.getRandomLiteColor
 
@@ -85,7 +83,7 @@ fun HomeScreen(navController: NavHostController) {
     var showFilterSheet by remember { mutableStateOf(false) }
 
     if (showFilterSheet) {
-        BottomSheet() {
+        filterBottomSheet() {
             showFilterSheet = false
         }
     }
@@ -440,7 +438,7 @@ fun ActionButtonView() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BottomSheet(onDismiss: () -> Unit) {
+fun filterBottomSheet(onDismiss: () -> Unit) {
     val modalBottomSheetState = rememberModalBottomSheetState()
 
     ModalBottomSheet(
