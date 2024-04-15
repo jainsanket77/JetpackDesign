@@ -24,8 +24,7 @@ fun NavigationScreens(navController: NavHostController) {
         composable(NavItem.Search.path) { SearchScreen() }
         composable(NavItem.Add.path) { AddScreen() }
         composable(NavItem.Chat.path) { ChatScreen() }
-        composable(NavItem.Profile.path) { ProfileScreen() }
-        composable(NavItem.Profile.path) { ProfileScreen() }
+        composable(NavItem.Profile.path) { ProfileScreen(navController) }
         composable(NavRoute.NOTIFICATION.title) { NotificationScreen(navController) }
     }
 }

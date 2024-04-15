@@ -20,10 +20,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -50,8 +46,8 @@ val notificationList = getNotifications()
 
 @Composable
 fun NotificationScreen(navController: NavHostController) {
-
-    var expanded by remember { mutableStateOf(false) }
+//
+//    var expanded by remember { mutableStateOf(false) }
 
     // A surface container using the 'background' color from the theme
     Surface(
@@ -106,7 +102,7 @@ fun ShowNotifications(
     onNotificationItemClick: ((NotificationModel) -> Unit)? = null,
 ) {
     val groupNotificationList = getNotifications().groupBy { it.date }
-    // Constructing the new list using flatMap and map
+
     val notificationList = groupNotificationList.flatMap { (date, notification) ->
         listOf(NotificationModel(header = date)) + notification
     }
