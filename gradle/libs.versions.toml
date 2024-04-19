@@ -1,20 +1,23 @@
 [versions]
+
+compileSdk = "34"
+targetSdk = "34"
+minSdk = "24"
+compose-compiler = "1.5.7"
+
 agp = "8.3.2"
 kotlin = "1.9.21"
-coreKtx = "1.12.0"
+coreKtx = "1.13.0"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
-lifecycleRuntimeKtx = "2.6.2"
-activityCompose = "1.8.2"
-composeBom = "2023.10.01"
-# @keep
-compileSdk = "34"
-compose-compiler = "1.5.7"
+lifecycleRuntimeKtx = "2.7.0"
+activityCompose = "1.9.0"
+composeBom = "2024.04.01"
 constraintlayout = "2.1.4"
-navigation_compose = "2.7.6"
+navigation_compose = "2.7.7"
 coil_compose = "2.5.0"
-
+timber_version = "5.0.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -34,6 +37,7 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation_compose" }
 androidx-coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil_compose" }
+timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber_version" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

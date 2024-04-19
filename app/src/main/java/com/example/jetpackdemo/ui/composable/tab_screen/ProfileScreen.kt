@@ -188,7 +188,7 @@ fun ShowProfilePosts(count: Int) {
         verticalArrangement = Arrangement.spacedBy(20.dp),
         modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)
     ) {
-        items(count) { i ->
+        items(count) { _ ->
             val randomLiteColor = getRandomLiteColor()
             val random = (1..30).random()
             ElevatedCard {

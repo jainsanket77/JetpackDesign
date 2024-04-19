@@ -9,8 +9,8 @@ android {
 
     defaultConfig {
         applicationId = "com.example.jetpackdemo"
-        minSdk = 24
-        targetSdk = 34
+        minSdk = libs.versions.minSdk.get().toIntOrNull() ?: 24
+        targetSdk = libs.versions.targetSdk.get().toIntOrNull() ?: 34
         versionCode = 1
         versionName = "1.0"
 
@@ -35,6 +35,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
@@ -59,6 +60,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.coil.compose)
+    implementation(libs.timber)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

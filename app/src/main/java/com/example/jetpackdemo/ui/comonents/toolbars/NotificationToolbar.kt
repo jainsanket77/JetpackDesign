@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.KeyboardArrowLeft
+import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowLeft
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -48,7 +48,7 @@ fun NotificationToolbar(
             onClick = { onBackPressed?.invoke() }
         ) {
             Icon(
-                imageVector = Icons.Outlined.KeyboardArrowLeft,
+                imageVector = Icons.AutoMirrored.Outlined.KeyboardArrowLeft,
                 contentDescription = "",
                 tint = Color.Black,
             )

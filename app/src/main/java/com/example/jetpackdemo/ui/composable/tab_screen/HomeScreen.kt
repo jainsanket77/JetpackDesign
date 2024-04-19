@@ -67,6 +67,7 @@ import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.jetpackdemo.R
+import com.example.jetpackdemo.data.PostModel
 import com.example.jetpackdemo.data.getAuthorList
 import com.example.jetpackdemo.data.getPosts
 import com.example.jetpackdemo.data.getTopicItems
@@ -79,11 +80,11 @@ import com.example.jetpackdemo.ui.theme.getRandomLiteColor
  */
 @Composable
 fun HomeScreen(navController: NavHostController) {
-    var selectedTabItem by remember { mutableStateOf("All") }
+    var selectedTabItem by rememberSaveable { mutableStateOf("All") }
     var showFilterSheet by remember { mutableStateOf(false) }
 
     if (showFilterSheet) {
-        filterBottomSheet() {
+        FilterBottomSheet() {
             showFilterSheet = false
         }
     }
@@ -100,11 +101,13 @@ fun HomeScreen(navController: NavHostController) {
             AppToolbar(onNotificationClick = {
                 navController.navigate(NavRoute.NOTIFICATION.title)
             })
-            HomeTextTabs(onTabItemClick = {
-                if (!it.isNullOrEmpty()) selectedTabItem = it
-            }, onFilterItemClick = {
-                showFilterSheet = true
-            })
+            HomeTextTabs(
+                selectedTabItem,
+                onTabItemClick = {
+                    if (!it.isNullOrEmpty()) selectedTabItem = it
+                }, onFilterItemClick = {
+                    showFilterSheet = true
+                })
 
             when (selectedTabItem) {
                 "All" -> ShowAllItems()
@@ -119,11 +122,12 @@ fun HomeScreen(navController: NavHostController) {
 @Preview(showBackground = true)
 @Composable
 fun HomeTextTabs(
-    onTabItemClick: ((String?) -> Unit)? = null, onFilterItemClick: (() -> Unit)? = null
+    selectedTabItem: String,
+    onTabItemClick: ((String?) -> Unit)? = null,
+    onFilterItemClick: (() -> Unit)? = null
 ) {
-    var tabIndex by rememberSaveable { mutableIntStateOf(0) }
-
     val tabs = listOf("All", "Photos", "Videos", "Posts")
+    val tabIndex = tabs.indexOfFirst { it == selectedTabItem }
 
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -153,7 +157,6 @@ fun HomeTextTabs(
                         }
                         .padding(8.dp),
                     onClick = {
-                        tabIndex = index
                         onTabItemClick?.invoke(tabs[index])
                     }
                 )
@@ -179,22 +182,27 @@ fun ShowAllItems() {
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalItemSpacing = 8.dp
     ) {
-        itemsIndexed((0..50).toList()) { i, item ->
-            val height = (100..200).random()
-            val randomLiteColor = getRandomLiteColor()
+        val allItemList = (0..50).map {
+            PostModel(
+                contentUrl = "https://picsum.photos/200?random=${it + 1}",
+                size = (100..200).random(),
+                bgColor = getRandomLiteColor()
+            )
+        }
+        itemsIndexed(allItemList) { i, item ->
+//            val height = (100..200).random()
+//            val randomLiteColor = getRandomLiteColor()
             Box(
                 Modifier
                     .padding(2.dp)
                     .clip(RoundedCornerShape(15.dp))
                     .fillMaxWidth()
-                    .height((height).dp)
-                    .background(randomLiteColor),
+                    .height((item.size ?: 200).dp)
+                    .background(item.bgColor ?: Color.LightGray),
             ) {
                 Box(modifier = Modifier.fillMaxSize()) {
                     val painter = rememberAsyncImagePainter(
-                        model = ImageRequest.Builder(LocalContext.current)
-                            .data("https://picsum.photos/200?random=${i + 1}")
-                            .build()
+                        model = ImageRequest.Builder(LocalContext.current).data(item.contentUrl).build()
                     )
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         CircularProgressIndicator()
@@ -223,8 +231,8 @@ fun ShowPosts() {
         postList.forEach {
             it.bgColor = getRandomLiteColor(240)
         }
-        itemsIndexed(postList) { i, item ->
-            val post = postList[i]
+        itemsIndexed(postList) { _, post ->
+//            val post = postList[i]
             Box(
                 Modifier
                     .padding(2.dp)
@@ -265,13 +273,12 @@ fun ShowPosts() {
                     )
 
                     if ((post.likes ?: 0) > 0 || (post.replies ?: 0) > 0) {
-                        var likeReplies = ""
-                        if ((post.replies ?: 0) > 0 && (post.likes ?: 0) > 0)
-                            likeReplies = "${post.replies} reply  ●  ${post.likes} likes"
+                        val likeReplies: String = if ((post.replies ?: 0) > 0 && (post.likes ?: 0) > 0)
+                            "${post.replies} reply  ●  ${post.likes} likes"
                         else if ((post.replies ?: 0) > 0)
-                            likeReplies = "${post.replies} reply"
-                        else if ((post.likes ?: 0) > 0)
-                            likeReplies = "${post.likes} likes"
+                            "${post.replies} reply"
+                        else
+                            "${post.likes} likes"
 
                         Text(
                             text = likeReplies,
@@ -306,7 +313,6 @@ fun ShowVideos() {
                     .background(randomLiteColor),
             ) {
                 Box(modifier = Modifier.fillMaxSize()) {
-                    val painterState = painter.state
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         CircularProgressIndicator()
                     }
@@ -358,7 +364,6 @@ fun ShowPhotos() {
                     .background(randomLiteColor),
             ) {
                 Box(modifier = Modifier.fillMaxSize()) {
-                    val painterState = painter.state
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         CircularProgressIndicator()
                     }
@@ -438,7 +443,7 @@ fun ActionButtonView() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun filterBottomSheet(onDismiss: () -> Unit) {
+fun FilterBottomSheet(onDismiss: () -> Unit) {
     val modalBottomSheetState = rememberModalBottomSheetState()
 
     ModalBottomSheet(

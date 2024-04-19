@@ -1,9 +1,12 @@
 package com.example.jetpackdemo.ui.composable
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.rememberNavController
 import com.example.jetpackdemo.ui.comonents.BottomNavigationBar
@@ -26,7 +29,10 @@ fun MainScreen() {
                 BottomNavigationBar(navController = navController)
             }
         }
-    ) {
-        NavigationScreens(navController = navController)
+    ) { innerPadding ->
+        // Apply the padding globally to the whole BottomNavScreensController
+        Box(modifier = Modifier.padding(innerPadding)) {
+            NavigationScreens(navController = navController)
+        }
     }
 }

@@ -11,6 +11,7 @@ data class PostModel(
     var likes: Int? = 0,
     var bgColor: Color? = null,
     var contentUrl: String? = "",
+    var size: Int? = 0,
 )
 
 fun getPosts() = listOf(

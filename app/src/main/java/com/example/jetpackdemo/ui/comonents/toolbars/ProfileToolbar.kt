@@ -7,10 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.outlined.KeyboardArrowLeft
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -25,8 +22,8 @@ import com.example.jetpackdemo.R
 
 @Composable
 fun ProfileToolbar(
-    onBackPressed: (() -> Unit)? = null,
     onMenuPressed: (() -> Unit)? = null,
+    onNotificationPressed: (() -> Unit)? = null,
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -46,7 +43,7 @@ fun ProfileToolbar(
             )
         }
 
-        IconButton(onClick = { onMenuPressed?.invoke() }) {
+        IconButton(onClick = { onNotificationPressed?.invoke() }) {
             Icon(
                 Icons.Outlined.Notifications,
                 contentDescription = "ic_notification",
