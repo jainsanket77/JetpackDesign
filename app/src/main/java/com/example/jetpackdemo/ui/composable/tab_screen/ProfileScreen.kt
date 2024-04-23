@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
@@ -37,6 +38,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
+import com.example.jetpackdemo.data.PostModel
 import com.example.jetpackdemo.data.getAuthorList
 import com.example.jetpackdemo.ui.comonents.toolbars.AppToolbar
 import com.example.jetpackdemo.ui.navigation.NavRoute
@@ -146,7 +148,7 @@ fun ShowProfileDetails() {
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .padding(start = 2.dp, top = 2.dp, bottom = 2.dp)
-                        .size(132.dp)
+                        .size(100.dp)
                         .clip(CircleShape)
                         .border(1.dp, Color.Gray, CircleShape)
                 )
@@ -188,20 +190,25 @@ fun ShowProfilePosts(count: Int) {
         verticalArrangement = Arrangement.spacedBy(20.dp),
         modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)
     ) {
-        items(count) { _ ->
-            val randomLiteColor = getRandomLiteColor()
-            val random = (1..30).random()
+        val postList = (1..count).map {
+            PostModel(
+                contentUrl = "https://picsum.photos/200?random=${(1..30).random() + 1}",
+                bgColor = getRandomLiteColor()
+            )
+        }
+
+        itemsIndexed(postList) { i, item ->
             ElevatedCard {
                 Box(
                     Modifier
                         .fillMaxWidth()
-                        .height(250.dp)
-                        .background(randomLiteColor)
+                        .height(200.dp)
+                        .background(item.bgColor ?: Color.LightGray)
                 ) {
                     Box(modifier = Modifier.fillMaxSize()) {
                         val painter = rememberAsyncImagePainter(
                             model = ImageRequest.Builder(LocalContext.current)
-                                .data("https://picsum.photos/200?random=${random + 1}")
+                                .data(item.contentUrl)
                                 .build()
                         )
                         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {

@@ -119,7 +119,6 @@ fun HomeScreen(navController: NavHostController) {
     }
 }
 
-@Preview(showBackground = true)
 @Composable
 fun HomeTextTabs(
     selectedTabItem: String,
