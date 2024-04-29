@@ -111,7 +111,7 @@ fun ShowNotifications(
         modifier = Modifier.padding(top = 12.dp)
     ) {
         itemsIndexed(notificationList) { i, item ->
-            if (!item.header.isNullOrBlank())
+            if (!item.header.isNullOrEmpty())
                 Text(
                     text = item.header ?: "",
                     color = Color.DarkGray,

@@ -27,7 +27,7 @@ import com.example.jetpackdemo.ui.navigation.NavItem
 
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {
-    val navItems = listOf(NavItem.Home, NavItem.Search, NavItem.Chat, NavItem.Profile)
+    val navItems = listOf(NavItem.Home, NavItem.Search, NavItem.Inbox, NavItem.Profile)
     var selectedItem by rememberSaveable { mutableIntStateOf(0) }
 
     NavigationBar(

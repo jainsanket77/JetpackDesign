@@ -29,8 +29,8 @@ sealed class NavItem {
         icon = Icons.Default.AddCircle, selectedIcon = Icons.Default.AddCircle
     )
 
-    object Chat : Item(
-        path = NavRoute.CHAT.title, title = NavRoute.CHAT.title,
+    object Inbox : Item(
+        path = NavRoute.INBOX.title, title = NavRoute.INBOX.title,
         icon = Icons.Outlined.MailOutline, selectedIcon = Icons.Filled.Email
     )
 
@@ -46,7 +46,7 @@ enum class NavRoute(val title: String) {
     HOME("Home"),
     SEARCH("Search"),
     ADD("Add"),
-    CHAT("Chat"),
+    INBOX("Inbox"),
     PROFILE("Profile"),
     NOTIFICATION("notification")
 }

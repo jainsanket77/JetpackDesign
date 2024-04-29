@@ -27,9 +27,9 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.Send
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material.icons.outlined.MailOutline
-import androidx.compose.material.icons.outlined.Send
 import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -84,7 +84,7 @@ fun HomeScreen(navController: NavHostController) {
     var showFilterSheet by remember { mutableStateOf(false) }
 
     if (showFilterSheet) {
-        FilterBottomSheet() {
+        FilterBottomSheet {
             showFilterSheet = false
         }
     }
@@ -434,7 +434,7 @@ fun ActionButtonView() {
             tint = Color.White, modifier = Modifier.padding(horizontal = 8.dp, vertical = 6.dp)
         )
         Icon(
-            imageVector = Icons.Outlined.Send, contentDescription = "",
+            imageVector = Icons.AutoMirrored.Outlined.Send, contentDescription = "",
             tint = Color.White, modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp)
         )
     }

@@ -18,3 +18,11 @@ fun getRandomLiteColor(from : Int = 200): Color {
     val blue = random.nextInt(from, 256)
     return Color(red, green, blue)
 }
+
+fun getRandomColor(input: String): Color {
+    val hashCode = input.hashCode()
+    val red = (hashCode and 0xFF0000) shr 16
+    val green = (hashCode and 0x00FF00) shr 8
+    val blue = hashCode and 0x0000FF
+    return Color(red, green, blue).copy(alpha = 0.13F)
+}

@@ -115,7 +115,7 @@ fun ShowProfileDetails() {
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 24.dp)
+                .padding(top = 16.dp)
                 .padding(horizontal = 12.dp)
         ) {
             Column(
