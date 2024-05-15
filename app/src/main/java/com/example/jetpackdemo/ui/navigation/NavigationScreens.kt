@@ -22,8 +22,8 @@ import com.example.jetpackdemo.ui.navigation.NavItem
 fun NavigationScreens(navController: NavHostController) {
     NavHost(navController, startDestination = NavItem.Home.path) {
         composable(NavItem.Home.path) { HomeScreen(navController) }
-        composable(NavItem.Search.path) { SearchScreen() }
-        composable(NavItem.Add.path) { AddScreen() }
+        composable(NavItem.Search.path) { SearchScreen(navController) }
+//        composable(NavItem.Add.path) { AddScreen() }
         composable(NavItem.Inbox.path) { InboxScreen(navController) }
         composable(NavItem.Profile.path) { ProfileScreen(navController) }
         composable(NavRoute.NOTIFICATION.title) { NotificationScreen(navController) }
