@@ -154,7 +154,7 @@ fun ShowUserList() {
                         .clip(RoundedCornerShape(8.dp))
                         .fillMaxWidth()
                         .border(width = 0.2.dp, color = Color.LightGray, RoundedCornerShape(8.dp))
-                        .background(post.bgColor ?: getRandomLiteColor(from = 246)),
+                        .background(post.bgColor ?: getRandomLiteColor(from = 236)),
                 ) {
                     Column(
                         modifier = Modifier
