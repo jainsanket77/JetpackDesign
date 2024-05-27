@@ -17,6 +17,7 @@ import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -86,7 +87,7 @@ fun ShowPopupMenu() {
             text = { Text("Settings") },
             onClick = { /*  */ }
         )
-        Divider()
+        HorizontalDivider()
         DropdownMenuItem(
             text = { Text("Delete") },
             onClick = { /* Handle delete! */ }

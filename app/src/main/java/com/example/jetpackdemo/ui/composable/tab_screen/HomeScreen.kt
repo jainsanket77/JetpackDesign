@@ -188,7 +188,7 @@ fun ShowAllItems() {
                 bgColor = getRandomLiteColor()
             )
         }
-        itemsIndexed(allItemList) { i, item ->
+        itemsIndexed(allItemList) { _, item ->
 //            val height = (100..200).random()
 //            val randomLiteColor = getRandomLiteColor()
             Box(
@@ -296,7 +296,7 @@ fun ShowPosts() {
 @Composable
 fun ShowVideos() {
     LazyColumn {
-        itemsIndexed((0..50).toList()) { i, item ->
+        itemsIndexed((0..50).toList()) { i, _ ->
             val randomLiteColor = getRandomLiteColor()
             val painter = rememberAsyncImagePainter(
                 model = ImageRequest.Builder(LocalContext.current)
@@ -347,7 +347,7 @@ fun ShowVideos() {
 @Composable
 fun ShowPhotos() {
     LazyColumn {
-        itemsIndexed((0..50).toList()) { i, item ->
+        itemsIndexed((0..50).toList()) { i, _ ->
             val randomLiteColor = getRandomLiteColor()
             val painter = rememberAsyncImagePainter(
                 model = ImageRequest.Builder(LocalContext.current)

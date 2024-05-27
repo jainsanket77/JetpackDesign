@@ -197,7 +197,7 @@ fun ShowProfilePosts(count: Int) {
             )
         }
 
-        itemsIndexed(postList) { i, item ->
+        itemsIndexed(postList) { _, item ->
             ElevatedCard {
                 Box(
                     Modifier

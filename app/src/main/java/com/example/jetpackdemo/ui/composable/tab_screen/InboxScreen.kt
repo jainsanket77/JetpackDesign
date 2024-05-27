@@ -129,7 +129,7 @@ fun ShowInboxList(
     LazyColumn(
         modifier = Modifier.padding(top = 12.dp)
     ) {
-        itemsIndexed(inboxList) { i, item ->
+        itemsIndexed(inboxList) { _, item ->
             if (!item.header.isNullOrEmpty())
                 Text(
                     text = item.header ?: "",

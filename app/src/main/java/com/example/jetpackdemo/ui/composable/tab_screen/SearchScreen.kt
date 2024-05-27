@@ -104,7 +104,7 @@ fun RecentSearchList() {
             modifier = Modifier.padding(vertical = 4.dp)
         )
         LazyColumn() {
-            itemsIndexed(recentSearchList) { i, item ->
+            itemsIndexed(recentSearchList) { _, item ->
                 Row {
                     Text(
                         text = item,
